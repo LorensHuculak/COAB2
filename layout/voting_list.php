@@ -7,7 +7,7 @@
 
         <!-- header vote-->
         <div class="media">
-            <div class="d-flex align-self-center">
+            <div class="d-flex align-self-center g-mt-10">
                 <h1 class="g-font-weight-300 g-font-size-28 g-color-black mb-0">Voting</h1>
             </div>
 
@@ -74,43 +74,51 @@
                                     <h3 class="g-font-weight-300 g-font-size-20 g-color-black g-mb-15"><?php echo htmlspecialchars($item['question']); ?></h3>
 
                                     <div class="media-body d-flex justify-content-end">
-                                        <div class="g-pos-rel g-z-index-2">
-                                            <a id="dropDown2Invoker" class="g-line-height-0 g-font-size-24 g-color-gray-light-v6 g-color-lightblue-v3--hover u-link-v5" href="#!" aria-controls="dropDown2" aria-haspopup="true" aria-expanded="false" data-dropdown-event="click" data-dropdown-target="#dropDown2" data-dropdown-type="jquery-slide">
-                                                <i class="hs-admin-more-alt g-ml-20"></i>
-                                            </a>
 
-                                            <div id="dropDown2" class="u-shadow-v31 g-pos-abs g-right-0 g-bg-white" aria-labelledby="dropDown2Invoker">
-                                                <ul class="list-unstyled g-nowrap mb-0">
-                                                    <li>
-                                                        <a class="d-flex align-items-center u-link-v5 g-bg-gray-light-v8--hover g-font-size-12 g-font-size-default--md g-color-gray-dark-v6 g-px-25 g-py-14" href="#!">
-                                                            <i class="hs-admin-pencil g-font-size-18 g-color-gray-light-v6 g-mr-10 g-mr-15--md"></i> Edit
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="d-flex align-items-center u-link-v5 g-bg-gray-light-v8--hover g-font-size-12 g-font-size-default--md g-color-gray-dark-v6 g-px-25 g-py-14" href="#!">
-                                                            <i class="hs-admin-archive g-font-size-18 g-color-gray-light-v6 g-mr-10 g-mr-15--md"></i> Archive
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="d-flex align-items-center u-link-v5 g-bg-gray-light-v8--hover g-font-size-12 g-font-size-default--md g-color-gray-dark-v6 g-px-25 g-py-14" href="#!">
-                                                            <i class="hs-admin-check g-font-size-18 g-color-gray-light-v6 g-mr-10 g-mr-15--md"></i> Mark as Done
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="d-flex align-items-center u-link-v5 g-bg-gray-light-v8--hover g-font-size-12 g-font-size-default--md g-color-gray-dark-v6 g-px-25 g-py-14" href="#!">
-                                                            <i class="hs-admin-plus g-font-size-18 g-color-gray-light-v6 g-mr-10 g-mr-15--md"></i> New Task
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="d-flex align-items-center u-link-v5 g-bg-gray-light-v8--hover g-font-size-12 g-font-size-default--md g-color-gray-dark-v6 g-px-25 g-py-14" href="#!">
-                                                            <i class="hs-admin-trash g-font-size-18 g-color-gray-light-v6 g-mr-10 g-mr-15--md"></i> Delete
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
+
+
+                                        <?php
+                                        if ($uid == $item['owner']) {
+                                            
+                                            echo '<div class="g-pos-rel g-z-index-2">
+                                    
+                                        <a id="dropDown'.htmlspecialchars($item['voteid']).'Invoker" class="g-line-height-0 g-font-size-24 g-color-gray-light-v6 g-color-lightblue-v3--hover u-link-v5" href="#!" aria-controls="dropDown'.htmlspecialchars($item['voteid']).'" aria-haspopup="true" aria-expanded="false" data-dropdown-event="click" data-dropdown-target="#dropDown'.htmlspecialchars($item['voteid']).'" data-dropdown-type="jquery-slide">
+                                            <i class="hs-admin-more-alt g-ml-20"></i>
+                                        </a>
+
+                                        <div id="dropDown'.htmlspecialchars($item['voteid']).'" class="u-shadow-v31 g-pos-abs g-right-0 g-bg-white" aria-labelledby="dropDown'.htmlspecialchars($item['voteid']).'Invoker">
+                                            <ul class="list-unstyled g-nowrap mb-0">
+                                                <li>
+                                                    <a class="d-flex align-items-center u-link-v5 g-bg-gray-light-v8--hover g-font-size-12 g-font-size-default--md g-color-gray-dark-v6 g-px-25 g-py-14" href="edit_voting.php?id='.htmlspecialchars($item['voteid']).'">
+                                                        <i class="hs-admin-pencil g-font-size-18 g-color-gray-light-v6 g-mr-10 g-mr-15--md"></i> Edit
+                                                    </a>
+                                                </li>
+
+
+                                                <li>
+                                                    <a data-id="'.htmlspecialchars($item['voteid']).'" class="deleteVote d-flex align-items-center u-link-v5 g-bg-gray-light-v8--hover g-font-size-12 g-font-size-default--md g-color-gray-dark-v6 g-px-25 g-py-14" href="#!">
+                                                        <i class="hs-admin-trash g-font-size-18 g-color-gray-light-v6 g-mr-10 g-mr-15--md"></i> Delete
+                                                    </a>
+                                                </li>
+                                            </ul>
                                         </div>
+                                    </div>';
+                                            
+                                            
+                                        }
+                                        ?>
+
+
+
+
+
                                     </div>
+
                                 </div>
+
+                                <p class="g-mb-30 g-color-gray-dark-v8">
+                                    <?php echo htmlspecialchars($item['description']); ?>
+                                </p>
 
 
                                 <?php     $answers = new Answers();
@@ -127,9 +135,13 @@
                                     
                                 }?>
                                     <input type="hidden" name="poll" value="<?php echo htmlspecialchars($item['voteid'])?>">
+
+
+
                             </header>
 
                             <hr class="d-flex g-brd-gray-light-v7 g-mx-20 g-mx-30--sm my-0">
+
 
                             <div class="card-block g-px-20 g-px-30--sm g-py-10 g-py-15--sm">
 
@@ -200,7 +212,9 @@ $answers = new Answers();
                                 <div class="col-md-6 g-mb-25 g-mb-0--md">
                                     <h5 class="g-font-size-default g-color-gray-dark-v6 g-mb-5 g-mb-5">Due date</h5>
                                     <p class="g-color-black mb-0">
-                                        <?php echo htmlspecialchars($item['deadline']); ?>
+                                        <?php   $deadlineformat = new DateTime($item['deadline']);
+    
+    echo htmlspecialchars(date_format($deadlineformat, 'd F Y')); ?>
                                     </p>
                                 </div>
 
@@ -247,136 +261,6 @@ $name = $users->getSingleUser($item['owner']);
                 <?php endforeach; ?>
 
 
-                    <div class="col-md-6 col-lg-4 g-mb-30">
-                        <div class="card h-100 g-brd-gray-light-v7 rounded">
-                            <header class="card-header g-bg-transparent g-brd-bottom-none g-pa-20 g-pa-30--sm">
-                                <div class="media g-mb-15">
-                                    <h3 class="g-font-weight-300 g-font-size-20 g-color-black g-mb-15">Trampoline purchase</h3>
-
-                                    <div class="media-body d-flex justify-content-end">
-                                        <div class="g-pos-rel g-z-index-2">
-                                            <a id="dropDown2Invoker" class="g-line-height-0 g-font-size-24 g-color-gray-light-v6 g-color-lightblue-v3--hover u-link-v5" href="#!" aria-controls="dropDown2" aria-haspopup="true" aria-expanded="false" data-dropdown-event="click" data-dropdown-target="#dropDown2" data-dropdown-type="jquery-slide">
-                                                <i class="hs-admin-more-alt g-ml-20"></i>
-                                            </a>
-
-                                            <div id="dropDown2" class="u-shadow-v31 g-pos-abs g-right-0 g-bg-white" aria-labelledby="dropDown2Invoker">
-                                                <ul class="list-unstyled g-nowrap mb-0">
-                                                    <li>
-                                                        <a class="d-flex align-items-center u-link-v5 g-bg-gray-light-v8--hover g-font-size-12 g-font-size-default--md g-color-gray-dark-v6 g-px-25 g-py-14" href="#!">
-                                                            <i class="hs-admin-pencil g-font-size-18 g-color-gray-light-v6 g-mr-10 g-mr-15--md"></i> Edit
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="d-flex align-items-center u-link-v5 g-bg-gray-light-v8--hover g-font-size-12 g-font-size-default--md g-color-gray-dark-v6 g-px-25 g-py-14" href="#!">
-                                                            <i class="hs-admin-archive g-font-size-18 g-color-gray-light-v6 g-mr-10 g-mr-15--md"></i> Archive
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="d-flex align-items-center u-link-v5 g-bg-gray-light-v8--hover g-font-size-12 g-font-size-default--md g-color-gray-dark-v6 g-px-25 g-py-14" href="#!">
-                                                            <i class="hs-admin-check g-font-size-18 g-color-gray-light-v6 g-mr-10 g-mr-15--md"></i> Mark as Done
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="d-flex align-items-center u-link-v5 g-bg-gray-light-v8--hover g-font-size-12 g-font-size-default--md g-color-gray-dark-v6 g-px-25 g-py-14" href="#!">
-                                                            <i class="hs-admin-plus g-font-size-18 g-color-gray-light-v6 g-mr-10 g-mr-15--md"></i> New Task
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="d-flex align-items-center u-link-v5 g-bg-gray-light-v8--hover g-font-size-12 g-font-size-default--md g-color-gray-dark-v6 g-px-25 g-py-14" href="#!">
-                                                            <i class="hs-admin-trash g-font-size-18 g-color-gray-light-v6 g-mr-10 g-mr-15--md"></i> Delete
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <span class="u-tags-v1 text-center g-width-130 g-brd-around g-brd-cyan g-bg-cyan g-color-white g-rounded-50 g-py-4 g-px-15">Thank You</span>
-                            </header>
-
-                            <hr class="d-flex g-brd-gray-light-v7 g-mx-20 g-mx-30--sm my-0">
-
-                            <div class="card-block g-px-20 g-px-30--sm g-py-10 g-py-15--sm">
-                                <div class="media align-self-center g-mb-5">
-                                    <div class="d-flex g-width-100 g-font-weight-300 g-color-gray-dark-v10">Yes</div>
-
-                                    <div class="media-body align-self-center">
-                                        <div class="progress g-height-4 g-rounded-2">
-                                            <div class="progress-bar g-bg-lightred-v2 g-rounded-2" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-
-                                    <div class="d-flex align-self-center justify-content-end g-font-weight-300 g-color-black g-width-40">25</div>
-                                </div>
-
-                                <div class="media align-self-center g-mb-5">
-                                    <div class="d-flex g-width-100 g-font-weight-300 g-color-gray-dark-v10">Maybe</div>
-
-                                    <div class="media-body align-self-center">
-                                        <div class="progress g-height-4 g-rounded-2">
-                                            <div class="progress-bar g-bg-lightblue-v3 g-rounded-2" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-
-                                    <div class="d-flex align-self-center justify-content-end g-font-weight-300 g-color-black g-width-40">16</div>
-                                </div>
-
-                                <div class="media align-self-center">
-                                    <div class="d-flex g-width-100 g-font-weight-300 g-color-gray-dark-v10">No</div>
-
-                                    <div class="media-body align-self-center">
-                                        <div class="progress g-height-4 g-rounded-2">
-                                            <div class="progress-bar g-bg-teal-v2 g-rounded-2" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-
-                                    <div class="d-flex align-self-center justify-content-end g-font-weight-300 g-color-black g-width-40">8</div>
-                                </div>
-                            </div>
-
-                            <hr class="d-flex g-brd-gray-light-v7 g-mx-20 g-mx-30--sm my-0">
-
-                            <div class="card-block g-px-20 g-px-30--sm g-py-15 g-py-20--sm">
-                                <div class="row g-mb-25">
-                                    <div class="col-md-6 g-mb-25 g-mb-0--md">
-                                        <h5 class="g-font-size-default g-color-gray-dark-v6 g-mb-5 g-mb-5">Due date</h5>
-                                        <p class="g-color-black mb-0">12 Jun 2017</p>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <h5 class="g-font-size-default g-color-gray-dark-v6 g-mb-5 g-mb-5">Owner</h5>
-                                        <p class="g-color-black mb-0">Jonathan De Roeck
-
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <!--    <div class="g-mb-25">
-                                        <h5 class="g-font-size-default g-color-gray-dark-v6 g-mb-5 g-mb-5">Last edited</h5>
-                                        <p class="g-color-black mb-0">New design uploaded by Adam</p>
-                                    </div>
-
-                                    <ul class="list-inline mb-0">
-                                        <li class="list-inline-item g-mb-10 g-mb-0--sm">
-                                            <img class="g-width-40 g-height-40 rounded-circle" src="../assets/img-temp/125x125/img1.jpg" alt="Image Description">
-                                        </li>
-                                        <li class="list-inline-item g-mb-10 g-mb-0--sm">
-                                            <img class="g-width-40 g-height-40 rounded-circle" src="../assets/img-temp/125x125/img12.jpg" alt="Image Description">
-                                        </li>
-                                        <li class="list-inline-item g-mb-10 g-mb-0--sm">
-                                            <div class="d-flex align-items-center justify-content-center g-width-40 g-height-40 g-bg-lightblue-v4 g-color-white rounded-circle g-pos-rel g-top-1">+12</div>
-                                        </li>
-                                        <li class="list-inline-item g-mb-10 g-mb-0--sm">
-                                            <a class="d-flex align-items-center justify-content-center u-link-v5 g-width-40 g-height-40 g-bg-gray-light-v8 g-bg-primary--hover g-color-lightblue-v4 g-color-white--hover rounded-circle g-pos-rel g-top-1" href="#!">
-                                                <i class="hs-admin-plus"></i>
-                                            </a>
-                                        </li>
-                                    </ul> -->
-                            </div>
-                        </div>
-                    </div>
 
 
 

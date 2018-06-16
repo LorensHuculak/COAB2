@@ -2,7 +2,9 @@
 
 $userspic = new User($db);
 $item = $userspic->getProfilePicture();
-
+$uid = $_SESSION['usersID'];
+$users = new User($db);
+$users = $users->getSingleUser($uid);
   if (!empty($_POST)) {
       
             $updateUser = new User($db);
@@ -15,6 +17,8 @@ $item = $userspic->getProfilePicture();
       
     $updateUser->editProfile();
       $updateUser->uploadPicture();
+      
+      header("Refresh:0");
       
 
            
@@ -34,9 +38,7 @@ $item = $userspic->getProfilePicture();
                         <!-- User Information -->
                         <section class="text-center g-mb-30 g-mb-50--md ">
                             <div class="d-inline-block g-pos-rel g-mb-20 ">
-                                <a class="u-badge-v2--lg u-badge--bottom-right g-width-32 g-height-32 g-bg-lightblue-v3 g-bg-primary--hover g-mb-20 g-mr-20 " href="#! ">
-                                    <i class="hs-admin-pencil g-absolute-centered g-font-size-14 g-color-white "></i>
-                                </a>
+
                                 <img class="g-width-200 img-fluid rounded-circle " src="assets/img/uploads/<?php echo htmlspecialchars($item[0]['picture']);?>" alt="Image description ">
                             </div>
 
@@ -66,7 +68,7 @@ $item = $userspic->getProfilePicture();
                         <section>
                             <ul class="list-unstyled mb-0 ">
                                 <li class="g-brd-top g-brd-gray-light-v7 mb-0 ">
-                                    <a class="d-flex align-items-center u-link-v5 g-parent g-py-15 active " href="../app-views/app-profile.html ">
+                                    <a class="d-flex align-items-center u-link-v5 g-parent g-py-15 active " href="profile.php">
                                         <span class="g-font-size-18 g-color-gray-light-v6 g-color-primary--parent-hover g-color-primary-v3--parent-active g-mr-15 ">
 						<i class="hs-admin-user "></i>
 					</span>
@@ -75,12 +77,19 @@ $item = $userspic->getProfilePicture();
                                 </li>
 
 
-
+                                <li class="g-brd-top g-brd-gray-light-v7 mb-0 ">
+                                    <a class="d-flex align-items-center u-link-v5 g-parent g-py-15 " href="profile_residence.php">
+                                        <span class="g-font-size-18 g-color-gray-light-v6 g-color-primary-v3--parent-hover g-color-primary-v3--parent-active g-mr-15 ">
+						<i class="hs-admin-home "></i>
+					</span>
+                                        <span class="g-color-gray-dark-v6 g-color-primary--parent-hover g-color-primary--parent-active ">Residential Information</span>
+                                    </a>
+                                </li>
 
 
 
                                 <li class="g-brd-top g-brd-gray-light-v7 mb-0 ">
-                                    <a class="d-flex align-items-center u-link-v5 g-parent g-py-15 " href="../app-views/app-profile-invite.html ">
+                                    <a class="d-flex align-items-center u-link-v5 g-parent g-py-15 " href="profile_invite.php">
                                         <span class="g-font-size-18 g-color-gray-light-v6 g-color-primary-v3--parent-hover g-color-primary-v3--parent-active g-mr-15 ">
 						<i class="hs-admin-announcement "></i>
 					</span>
@@ -114,12 +123,12 @@ $item = $userspic->getProfilePicture();
                                         <span class="g-pos-abs g-top-0 g-right-0 d-block g-width-40 h-100 opacity-0 g-opacity-1--success ">
                           <i class="hs-admin-check g-absolute-centered g-font-size-default g-color-lightblue-v3 "></i>
                         </span>
-                                        <input id="username" name="username" class="form-control form-control-md g-brd-gray-light-v7 g-brd-lightblue-v3--focus g-brd-lightred-v2--error g-rounded-4 g-px-20 g-py-12 " type="text " value="Lorens " required="required " data-msg="This field is mandatory " data-error-class="u-has-error-v3 " data-success-class="has-success " aria-required="true ">
+                                        <input id="username" name="username" class="form-control form-control-md g-color-gray-dark-v8 g-brd-gray-light-v7 g-brd-lightblue-v3--focus g-brd-lightred-v2--error g-rounded-4 g-px-20 g-py-12 " type="text " value="<?php  echo htmlspecialchars($users[0]['username']);?>" required="required " data-msg="This field is mandatory " data-error-class="u-has-error-v3 " data-success-class="has-success " aria-required="true ">
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="row g-mb-20 ">
+                            <!--     <div class="row g-mb-20 ">
                                 <div class="col-md-3 align-self-center g-mb-5 g-mb-0--md ">
                                     <label class="mb-0 " for="#lastName ">Name</label>
                                 </div>
@@ -132,7 +141,7 @@ $item = $userspic->getProfilePicture();
                                         <input id="lastName " name="name" class="form-control form-control-md g-brd-gray-light-v7 g-brd-lightblue-v3--focus g-brd-lightred-v2--error g-rounded-4 g-px-20 g-py-12 " type="text " value="Huculak " required="required " data-msg="This field is mandatory " data-error-class="u-has-error-v3 " data-success-class="has-success " aria-required="true ">
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="row g-mb-20 ">
                                 <div class="col-md-3 align-self-center g-mb-5 g-mb-0--md ">
@@ -146,7 +155,7 @@ $item = $userspic->getProfilePicture();
                                                 <span class="g-pos-abs g-top-0 g-right-0 d-block g-width-40 h-100 opacity-0 g-opacity-1--success ">
                               <i class="hs-admin-check g-absolute-centered g-font-size-default g-color-lightblue-v3 "></i>
                             </span>
-                                                <select class="js-select u-select--v2-select w-100 " required="required " style="display: none; ">
+                                                <select class="js-select u-select--v2-select w-100 g-color-gray-dark-v8" required="required " style="display: none; ">
                                                     <option value="Male " selected="selected ">Male</option>
                                                     <option value="Female ">Female</option>
                                                     <option value="Others ">Others</option>
@@ -171,7 +180,7 @@ $item = $userspic->getProfilePicture();
                                                 <span class="g-pos-abs g-top-0 g-right-0 d-block g-width-40 h-100 opacity-0 g-opacity-1--success ">
                               <i class="hs-admin-check g-absolute-centered g-font-size-default g-color-lightblue-v3 "></i>
                             </span>
-                                                <select class="js-select u-select--v2-select w-100 " required="required " style="display: none; ">
+                                                <select class="js-select u-select--v2-select w-100 g-color-gray-dark-v8" required="required " style="display: none; ">
                                                     <option>January</option>
                                                     <option>February</option>
                                                     <option>March</option>
@@ -194,7 +203,7 @@ $item = $userspic->getProfilePicture();
                                                 <span class="g-pos-abs g-top-0 g-right-0 d-block g-width-40 h-100 opacity-0 g-opacity-1--success ">
                               <i class="hs-admin-check g-absolute-centered g-font-size-default g-color-lightblue-v3 "></i>
                             </span>
-                                                <select class="js-select u-select--v2-select w-100 " required="required " style="display: none; ">
+                                                <select class="js-select u-select--v2-select w-100 g-color-gray-dark-v8" required="required " style="display: none; ">
                                                     <option>1</option>
                                                     <option>2</option>
                                                     <option>3</option>
@@ -236,7 +245,7 @@ $item = $userspic->getProfilePicture();
                                                 <span class="g-pos-abs g-top-0 g-right-0 d-block g-width-40 h-100 opacity-0 g-opacity-1--success ">
                               <i class="hs-admin-check g-absolute-centered g-font-size-default g-color-lightblue-v3 "></i>
                             </span>
-                                                <select class="js-select u-select--v2-select w-100 " required="required " style="display: none; ">
+                                                <select class="js-select u-select--v2-select w-100 g-color-gray-dark-v8" required="required " style="display: none; ">
                                                     <option>1900</option>
                                                     <option>1901</option>
                                                     <option>1902</option>
@@ -373,25 +382,11 @@ $item = $userspic->getProfilePicture();
                                         <span class="g-pos-abs g-top-0 g-right-0 d-block g-width-40 h-100 opacity-0 g-opacity-1--success ">
                           <i class="hs-admin-check g-absolute-centered g-font-size-default g-color-lightblue-v3 "></i>
                         </span>
-                                        <input id="email " name="email" class="form-control form-control-md g-brd-gray-light-v7 g-brd-lightblue-v3--focus g-brd-lightred-v2--error g-rounded-4 g-px-20 g-py-12 " type="email " value="lorens.huculak@gmail.com " required="required " data-msg="This field is mandatory " data-error-class="u-has-error-v3 " data-success-class="has-success " aria-required="true ">
+                                        <input id="email " name="email" class="form-control form-control-md g-color-gray-dark-v8 g-brd-gray-light-v7 g-brd-lightblue-v3--focus g-brd-lightred-v2--error g-rounded-4 g-px-20 g-py-12 " type="email " value="<?php  echo htmlspecialchars($users[0]['email']);?>" required="required " data-msg="This field is mandatory " data-error-class="u-has-error-v3 " data-success-class="has-success " aria-required="true ">
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="row g-mb-20 ">
-                                <div class="col-md-3 align-self-center g-mb-5 g-mb-0--md ">
-                                    <label class="mb-0 " for="#confirmEmail ">Confirm Email</label>
-                                </div>
-
-                                <div class="col-md-9 align-self-center ">
-                                    <div class="form-group g-pos-rel mb-0 ">
-                                        <span class="g-pos-abs g-top-0 g-right-0 d-block g-width-40 h-100 opacity-0 g-opacity-1--success ">
-                          <i class="hs-admin-check g-absolute-centered g-font-size-default g-color-lightblue-v3 "></i>
-                        </span>
-                                        <input id="confirmEmail " name="confirmEmail " class="form-control form-control-md g-brd-gray-light-v7 g-brd-lightblue-v3--focus g-brd-lightred-v2--error g-rounded-4 g-px-20 g-py-12 " type="email " value="lorens.huculak@gmail.com " required="required " data-msg="This field is mandatory " data-error-class="u-has-error-v3 " data-success-class="has-success " aria-required="true ">
-                                    </div>
-                                </div>
-                            </div>
 
 
 
@@ -407,7 +402,7 @@ $item = $userspic->getProfilePicture();
                                                 <span class="g-pos-abs g-top-0 g-right-0 d-block g-width-40 h-100 opacity-0 g-opacity-1--success ">
                               <i class="hs-admin-check g-absolute-centered g-font-size-default g-color-lightblue-v3 "></i>
                             </span>
-                                                <input id="phone " name="phone " class="form-control form-control-md g-brd-gray-light-v7 g-brd-lightblue-v3--focus g-brd-lightred-v2--error g-rounded-4 g-px-20 g-py-12 " type="tel " value="+32 472 05 37 65 " required="required " data-msg="This field is mandatory " data-error-class="u-has-error-v3 " data-success-class="has-success " aria-required="true ">
+                                                <input id="phone " name="phone" class="form-control g-color-gray-dark-v8 form-control-md g-brd-gray-light-v7 g-brd-lightblue-v3--focus g-brd-lightred-v2--error g-rounded-4 g-px-20 g-py-12 " type="tel " value="+32 472 05 37 65" required="required " data-msg="This field is mandatory " data-error-class="u-has-error-v3 " data-success-class="has-success " aria-required="true ">
                                             </div>
                                         </div>
 
@@ -418,13 +413,13 @@ $item = $userspic->getProfilePicture();
 
                             <div class="row g-mb-20 ">
                                 <div class="col-md-3 align-self-center g-mb-5 g-mb-0--md ">
-                                    <label class="mb-0 " for="#phone ">File Input</label>
+                                    <label class="mb-0 " for="#phone ">Profile Picture</label>
                                 </div>
 
                                 <div class="col-md-9 align-self-center ">
                                     <div class="row g-mx-minus-10 ">
                                         <div class="col-auto align-self-center g-px-10 ">
-                                            <input type="file" name="picture" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
+                                            <input type="file" name="picture" class="form-control-file g-color-gray-dark-v8" id="exampleInputFile" aria-describedby="fileHelp">
                                         </div>
 
 
@@ -435,14 +430,17 @@ $item = $userspic->getProfilePicture();
 
 
 
+
+
+
                             <div class="row g-mb-20 ">
                                 <div class="col-md-3 align-self-center g-mb-5 g-mb-0--md ">
-                                    <label class="mb-0 " for="#location ">Your Location</label>
+                                    <label class="mb-0 " for="#location ">Your Skills</label>
                                 </div>
 
                                 <div class="col-md-9 align-self-center ">
                                     <div class="u-tagsinput--v2--blue g-brd-around g-brd-gray-light-v7 g-brd-lightblue-v3--focus g-rounded-4 g-px-6 g-py-5">
-                                        <input type="text" value="Developement, Software, Html, Css" data-role="tagsinput">
+                                        <input type="text" value="Development, Software, Html, Css" data-role="tagsinput">
                                     </div>
                                 </div>
                             </div>
@@ -471,10 +469,10 @@ $item = $userspic->getProfilePicture();
                                                 <span class="g-pos-abs g-top-0 g-right-0 d-block g-width-40 h-100 opacity-0 g-opacity-1--success ">
                               <i class="hs-admin-check g-absolute-centered g-font-size-default g-color-lightblue-v3 "></i>
                             </span>
-                                                <select name="language " class="js-select u-select--v2-select w-100 " required="required " style="display: none; ">
-                                                    <option data-content='<span class="d-flex align-items-center "><img class="g-width-20 g-height-20 rounded-circle g-mr-8 " src="assets/img/langs/us.png " alt="Image Description "><span class="g-line-height-1 g-color-black ">English</span></span>'>English</option>
-                                                    <option data-content='<span class="d-flex align-items-center "><img class="g-width-20 g-height-20 rounded-circle g-mr-8 " src="assets/img/langs/de.png " alt="Image Description "><span class="g-line-height-1 g-color-black ">Deutsche</span></span>'>Deutsche</option>
-                                                    <option data-content='<span class="d-flex align-items-center "><img class="g-width-20 g-height-20 rounded-circle g-mr-8 " src="assets/img/langs/ru.png " alt="Image Description "><span class="g-line-height-1 g-color-black ">Русский</span></span>'>Русский</option>
+                                                <select name="language " class="js-select u-select--v2-select w-100 g-color-gray-dark-v8" required="required " style="display: none; ">
+                                                    <option data-content='<span class="d-flex align-items-center "><img class="g-width-20 g-height-20 rounded-circle g-mr-8 " src="assets/img/langs/uk.png " alt="Image Description "><span class="g-line-height-1 g-color-gray-dark-v8 ">English</span></span>'>English</option>
+                                                    <option data-content='<span class="d-flex align-items-center "><img class="g-width-20 g-height-20 rounded-circle g-mr-8 " src="assets/img/langs/be.png " alt="Image Description "><span class="g-line-height-1 g-color-gray-dark-v8">Nederlands</span></span>'>Nederlands</option>
+
                                                 </select>
                                                 <i class="hs-admin-angle-down g-absolute-centered--y g-right-0 g-color-gray-light-v6 ml-auto g-mr-15 "></i>
                                             </div>
@@ -488,26 +486,28 @@ $item = $userspic->getProfilePicture();
                                     <label class="mb-0 ">Default Currency</label>
                                 </div>
 
+
                                 <div class="col-md-9 align-self-center ">
                                     <div class="row g-mx-minus-10 ">
                                         <div class="col-auto align-self-center g-width-270 g-px-10 ">
                                             <div class="btn-group justified-content ">
-                                                <label class="u-check ">
-                                                    <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0 " name="currency " type="radio " checked="checked ">
-                                                    <span class="btn btn-md btn-block u-btn-outline-lightgray g-bg-lightblue-v3--checked g-font-size-16 g-color-white--checked g-rounded-0--top-right g-rounded-0--bottom-right g-py-10 ">$</span>
+                                                <label class="u-check">
+                                                    <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0 g-color-gray-dark-v8" name="radGroupBtn1_1" checked="" value="usd" type="radio">
+                                                    <span class="g-color-gray-dark-v8 btn btn-md btn-block u-btn-outline-lightgray g-color-white--checked g-bg-primary--checked rounded-0">$</span>
                                                 </label>
-                                                <label class="u-check ">
-                                                    <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0 " name="currency " type="radio ">
-                                                    <span class="btn btn-md btn-block u-btn-outline-lightgray g-bg-lightblue-v3--checked g-font-size-16 g-color-white--checked g-brd-left-none--md rounded-0 g-py-10 ">€</span>
+                                                <label class="u-check">
+                                                    <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0 g-color-gray-dark-v8" name="radGroupBtn1_1" value="eur" type="radio">
+                                                    <span class="g-color-gray-dark-v8 btn btn-md btn-block u-btn-outline-lightgray g-color-white--checked g-bg-primary--checked g-brd-left-none--md rounded-0">€</span>
                                                 </label>
-                                                <label class="u-check ">
-                                                    <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0 " name="currency " type="radio ">
-                                                    <span class="btn btn-md btn-block u-btn-outline-lightgray g-bg-lightblue-v3--checked g-font-size-16 g-color-white--checked g-brd-left-none--md rounded-0 g-py-10 ">£</span>
+                                                <label class="u-check">
+                                                    <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0 g-color-gray-dark-v8" name="radGroupBtn1_1" value="gbp" type="radio">
+                                                    <span class="g-color-gray-dark-v8 btn btn-md btn-block u-btn-outline-lightgray g-color-white--checked g-bg-primary--checked g-brd-left-none--md rounded-0">£</span>
                                                 </label>
-                                                <label class="u-check ">
-                                                    <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0 " name="currency " type="radio ">
-                                                    <span class="btn btn-md btn-block u-btn-outline-lightgray g-bg-lightblue-v3--checked g-font-size-16 g-color-white--checked g-brd-left-none--md g-rounded-0--top-left g-rounded-0--bottom-left g-py-10 ">¥</span>
+                                                <label class="u-check">
+                                                    <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0 g-color-gray-dark-v8" name="radGroupBtn1_1" value="yen" type="radio">
+                                                    <span class="g-color-gray-dark-v8 btn btn-md btn-block u-btn-outline-lightgray g-color-white--checked g-bg-primary--checked g-brd-left-none--md rounded-0">¥</span>
                                                 </label>
+
                                             </div>
                                         </div>
                                     </div>
@@ -555,7 +555,7 @@ $item = $userspic->getProfilePicture();
 
                             <div>
                                 <button class="btn btn-md btn-xl--md u-btn-lightblue-v3 g-width-160--md g-font-size-12 g-font-size-default--md g-mb-10 " type="submit ">Save Changes</button>
-                                <button class="btn btn-md btn-xl--md u-btn-outline-gray-dark-v6 g-font-size-12 g-font-size-default--md g-mr-10 g-mb-10 " type="reset ">Cancel</button>
+
                             </div>
                         </form>
                     </div>

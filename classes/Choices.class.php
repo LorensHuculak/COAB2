@@ -61,6 +61,14 @@ $conn = Db::getInstance();
         $statement->execute();
             
 		}
+        
+        public function removeChoice($choicesid){
+              
+$conn = Db::getInstance();
+        $statement = $conn->prepare("DELETE FROM voting_choices WHERE choiceid = :choiceid");
+        $statement->bindValue(':choiceid', $choicesid);
+       $statement->execute();
+    }
 
     public function getChoices($poll)
     {

@@ -60,6 +60,8 @@
 <script src="assets/vendor/chartist-js/chartist.min.js"></script>
 <script src="assets/vendor/chartist-js-tooltip/chartist-plugin-tooltip.js"></script>
 <script src="assets/vendor/fancybox/jquery.fancybox.min.js"></script>
+<script src="assets/vendor/datatables/media/js/jquery.dataTables.min.js"></script>
+<script src="assets/vendor/datatables/media/js/dataTables.select.js"></script>
 
 <!-- JS Unify -->
 <script src="assets/js/hs.core.js"></script>
@@ -74,6 +76,7 @@
 <script src="assets/js/components/hs.bar-chart.js"></script>
 <script src="assets/js/helpers/hs.focus-state.js"></script>
 <script src="assets/js/components/hs.popup.js"></script>
+<script src="assets/js/components/hs.datatables.js"></script>
 
 <!-- JS Implementing Plugins -->
 <script src="assets/vendor/custombox/custombox.min.js"></script>
@@ -91,6 +94,22 @@
 <!-- JS Plugins Init. -->
 <script>
     $(document).on('ready', function () {
+
+
+
+        var sum = 0.0;
+        $('.subtotalprice').each(function () {
+            sum += parseFloat($(this).text());
+
+
+            $('.totalprice').html('€ ' + sum);
+        });
+
+
+
+
+
+
         // initialization of custom select
         $('.js-select').selectpicker();
 
@@ -102,6 +121,10 @@
         $.HSCore.components.HSDonutChart.init('.js-donut-chart');
         $.HSCore.components.HSBarChart.init('.js-bar-chart');
         $.HSCore.components.HSModalWindow.init('[data-modal-target]');
+        // initialization of datatables
+        $.HSCore.components.HSDatatables.init('.js-datatable');
+
+
 
         // initialization of sidebar navigation component
         $.HSCore.components.HSSideNav.init('.js-side-nav', {
@@ -453,7 +476,18 @@
 
 
 
-                    
+
+
+
+
+
+
+
+
+
+
+
+                
                 , 'MO'
 
 
@@ -780,7 +814,18 @@
 
 
 
-                    
+
+
+
+
+
+
+
+
+
+
+
+                
                 , 'TU'
 
 
@@ -1107,7 +1152,18 @@
 
 
 
-                    
+
+
+
+
+
+
+
+
+
+
+
+                
                 , 'WE'
 
 
@@ -1434,7 +1490,18 @@
 
 
 
-                    
+
+
+
+
+
+
+
+
+
+
+
+                
                 , 'TH'
 
 
@@ -1761,7 +1828,18 @@
 
 
 
-                    
+
+
+
+
+
+
+
+
+
+
+
+                
                 , 'FR'
 
 
@@ -2088,7 +2166,18 @@
 
 
 
-                    
+
+
+
+
+
+
+
+
+
+
+
+                
                 , 'SA'
         ]
         });

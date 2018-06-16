@@ -39,11 +39,16 @@ spl_autoload_register(function($filename){
 
 //CREATE NEW OBJECTS
 $user = new User($db);
-$lists = new Lists();
 $tasks = new Tasks();
+$comments = new Comments();
+$types = new Types();
 $votings = new Votes();
 $choices = new Choices();
 $answers = new Answers();
+$events = new Events();
+$attends = new Attends();
+$bills = new Bills();
+$payers = new Payers();
 
 
 

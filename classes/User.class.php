@@ -6,6 +6,9 @@ class User {
     private $email;
     private $password;
     private $usersid;
+    private $household;
+    private $area;
+    private $admin;
     
       public function getUsersID()
         {
@@ -61,6 +64,39 @@ class User {
         public function setPicture($picture)
         {
             $this->picture = $picture;
+        }
+    
+      public function getHousehold()
+        {
+            return $this->household;
+        }
+
+ 
+        public function setHousehold($household)
+        {
+            $this->household = $household;
+        }
+    
+      public function getArea()
+        {
+            return $this->area;
+        }
+
+ 
+        public function setArea($area)
+        {
+            $this->area = $area;
+        }
+    
+      public function getAdmin()
+        {
+            return $this->admin;
+        }
+
+ 
+        public function setAdmin($admin)
+        {
+            $this->admin = $admin;
         }
 
     function __construct($db){
@@ -162,6 +198,21 @@ $conn = Db::getInstance();
         return $result;
     }
     
+    
+        public function getAdmins()
+    {
+$conn = Db::getInstance();
+      
+            $usersid = $_SESSION['usersID'];
+        $statement = $conn->prepare("SELECT * FROM users WHERE beheerder = :beheerder");
+               $statement->bindValue(":beheerder", 1);
+
+        $statement->execute();
+
+        $result = $statement->fetchAll();
+        return $result;
+    }
+    
            public function getSingleUser($usersid)
     {
 $conn = Db::getInstance();
@@ -209,6 +260,26 @@ $usersid = $_SESSION['usersID'];
     $_SESSION['username'] = $updatename;
         
     }
+    
+    
+    
+         public function editHousehold()
+    {
+        $conn = Db::getInstance();
+         
+$usersid = $_SESSION['usersID'];
+   
+        $statement = $conn->prepare("UPDATE users SET gezin = :gezin, oppervlakte = :oppervlakte, beheerder = :beheerder WHERE usersid = :usersid");
+        $statement->bindValue(":gezin", $this->getHousehold());
+        $statement->bindValue(":oppervlakte", $this->getArea());
+        $statement->bindValue(":beheerder", $this->getAdmin());      
+        $statement->bindValue(":usersid", $usersid);
+        $statement->execute();
+    
+ 
+        
+    }
+    
     
     
     public function uploadPicture(){ 

@@ -99,7 +99,7 @@ $conn = Db::getInstance();
     {
 $conn = Db::getInstance();
 
-        $statement = $conn->prepare("SELECT voting_choices.name, 
+        $statement = $conn->prepare("SELECT voting_choices.choiceid, voting_choices.name, 
         COUNT(voting_answers.answerid) * 100 / 
         (SELECT COUNT(*)
         FROM voting_answers 

@@ -74,7 +74,7 @@ require('layout/header_login.php');
                                 <!-- Form -->
                                 <form role="form" method="post" action="" autocomplete="off" class="g-py-15">
                                     <div class="mb-4">
-                                        <input type="text" name="username" id="username" placeholder="Username" value="<?php if(isset($error)){ echo $_POST['username']; } ?>" tabindex="1" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15">
+                                        <input type="text" name="username" id="username" placeholder="Username" value="<?php if(isset($error)){ echo $_POST['username']; } ?>" tabindex="1" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-cyan--hover rounded g-py-15 g-px-15">
                                     </div>
 
 

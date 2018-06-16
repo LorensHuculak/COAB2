@@ -87,21 +87,21 @@ h6 {
 
 ::-moz-selection {
     color: #fff;
-    background-color: #72c02c;
+    background-color: #38B5CF;
 }
 
 ::selection {
     color: #fff;
-    background-color: #72c02c;
+    background-color: #38B5CF;
 }
 
 .g-bg-primary::-moz-selection {
-    color: #72c02c;
+    color: #38B5CF;
     background-color: #fff;
 }
 
 .g-bg-primary::selection {
-    color: #72c02c;
+    color: #38B5CF;
     background-color: #fff;
 }
 

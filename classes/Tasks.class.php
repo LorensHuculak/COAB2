@@ -3,12 +3,11 @@
         
         private $tasksid;
         private $taskname;
-        private $course;
         private $deadline;
-        private $worktime;
+        private $message;
         private $owner;
-        private $parentlist;
-        private $state;
+        private $type;
+
         
          public function getTasksID()
         {
@@ -33,6 +32,7 @@
             $this->taskname = $taskname;
         }
         
+        
         public function getDeadline()
         {
             return $this->deadline;
@@ -43,29 +43,31 @@
         {
             $this->deadline = $deadline;
         }
+        
+        
+            public function getMessage()
+        {
+            return $this->message;
+        }
+
+ 
+        public function setMessage($message)
+        {
+            $this->message = $message;
+        }
           
-        public function getCourse()
+        public function getType()
         {
-            return $this->course;
+            return $this->type;
         }
 
  
-        public function setCourse($course)
+        public function setType($type)
         {
-            $this->course = $course;
+            $this->type = $type;
         }
         
-        public function getWorkTime()
-        {
-            return $this->worktime;
-        }
-
- 
-        public function setWorkTime($worktime)
-        {
-            $this->worktime = $worktime;
-        }
-        
+       
            public function getOwner()
         {
             return $this->owner;
@@ -77,28 +79,7 @@
             $this->owner = $owner;
         }
         
-          
-           public function getParentList()
-        {
-            return $this->parentlist;
-        }
-
- 
-        public function setParentList($parentlist)
-        {
-            $this->parentlist = $parentlist;
-        }
-        
-             public function getState()
-        {
-            return $this->state;
-        }
-
- 
-        public function setState($state)
-        {
-            $this->state = $state;
-        }
+      
 
 
 
@@ -109,14 +90,34 @@
 $conn = Db::getInstance();
 	       
   
-        $statement = $conn->prepare("INSERT INTO tasks (taskname, course, deadline, worktime, owner, parentlist, state) VALUES (:taskname, :course, :deadline, :worktime, :owner, :parentlist, :state);");
+        $statement = $conn->prepare("INSERT INTO tasks (taskname, deadline, message, owner, type) VALUES (:taskname, :deadline, :message, :owner, :type);");
+            
         $statement -> bindValue(":taskname", $this->getTaskName());
-        $statement -> bindValue(":course", $this->getCourse());
         $statement -> bindValue(":deadline", $this->getDeadline());
-        $statement->bindValue(":worktime", $this->getWorkTime());
+        $statement -> bindValue(":message", $this->getMessage());
               $statement -> bindValue(":owner", $this->getOwner());
-        $statement -> bindValue(":parentlist", $this->getParentList());
-        $statement->bindValue(":state", $this->getState());
+        $statement -> bindValue(":type", $this->getType());
+
+
+        $statement->execute();
+            
+		}
+        
+        
+        	public function updateTask(){
+            
+
+$conn = Db::getInstance();
+	       
+  
+        $statement = $conn->prepare("UPDATE tasks SET taskname = :taskname, deadline = :deadline, message = :message, owner = :owner, type = :type WHERE tasksID = :tasksID");
+           $statement -> bindValue(":tasksID", $_GET['id']);   
+        $statement -> bindValue(":taskname", $this->getTaskName());
+        $statement -> bindValue(":deadline", $this->getDeadline());
+        $statement -> bindValue(":message", $this->getMessage());
+              $statement -> bindValue(":owner", $this->getOwner());
+        $statement -> bindValue(":type", $this->getType());
+
 
         $statement->execute();
             
@@ -125,9 +126,9 @@ $conn = Db::getInstance();
     public function getTasks()
     {
 $conn = Db::getInstance();
-  $usersid = $_SESSION['usersID'];
-        $statement = $conn->prepare("SELECT * FROM tasks WHERE owner = :usersid ORDER BY deadline asc");
-        $statement -> bindValue(":usersid",  $usersid);
+
+        $statement = $conn->prepare("SELECT * FROM tasks ORDER BY deadline asc");
+
         $statement->execute();
 
         $result = $statement->fetchAll();
@@ -229,22 +230,6 @@ $conn = Db::getInstance();
        $statement->execute();
     }
         
-          public function updateTask()
-    {
-  $conn = Db::getInstance();;
-   
-        $statement = $conn->prepare("UPDATE tasks SET taskname = :taskname, course = :course, deadline = :deadline, worktime = :worktime, owner = :owner, parentlist = :parentlist WHERE tasksID = :tasksid");
-                   $statement -> bindValue(":tasksid", $_GET['id']);
-     $statement -> bindValue(":taskname", $this->getTaskName());
-        $statement -> bindValue(":course", $this->getCourse());
-        $statement -> bindValue(":deadline", $this->getDeadline());
-        $statement->bindValue(":worktime", $this->getWorkTime());
-              $statement -> bindValue(":owner", $this->getOwner());
-        $statement -> bindValue(":parentlist", $this->getParentList());
-
-        $statement->execute();
-    
-    }
         
           // CHECKBOX - DEADLINE STATE
         

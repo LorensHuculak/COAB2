@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
-  
-        <!-- Title -->
-    <title><?php if(isset($title)){ echo $title; }?></title>
+
+    <!-- Title -->
+    <title>
+        <?php if(isset($title)){ echo $title; }?>
+    </title>
 
     <!-- Required Meta Tags Always Come First -->
     <meta charset="utf-8">
@@ -27,8 +30,11 @@
     <!-- CSS Unify -->
     <link rel="stylesheet" href="assets/css/unify.css">
 
+
+
     <!-- CSS Customization -->
     <link rel="stylesheet" href="assets/css/custom.css">
 
 </head>
+
 <body>

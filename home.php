@@ -23,7 +23,7 @@ require('layout/header.php');
 
 
 
-            <?php include_once('layout/list.php'); ?>
+            <?php include_once('layout/event_list.php'); ?>
 
 
                 <?php 

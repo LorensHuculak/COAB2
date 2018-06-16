@@ -30,6 +30,18 @@
             $this->question = $question;
         }
         
+         public function getDescription()
+        {
+            return $this->description;
+        }
+
+ 
+        public function setDescription($description)
+        {
+            $this->description = $description;
+        }
+        
+        
         public function getDeadline()
         {
             return $this->deadline;
@@ -63,8 +75,9 @@
 $conn = Db::getInstance();
 	         $usersid = $_SESSION['usersID'];
   
-        $statement = $conn->prepare("INSERT INTO voting (question, deadline, owner) VALUES (:question, :deadline, :usersid);");
+        $statement = $conn->prepare("INSERT INTO voting (question, description, deadline, owner) VALUES (:question, :description, :deadline, :usersid);");
         $statement -> bindValue(":question", $this->getQuestion());
+        $statement -> bindValue(":description", $this->getDescription());
         $statement -> bindValue(":deadline", $this->getDeadline());
         $statement -> bindValue(":usersid", $this->getOwner());
        
@@ -72,6 +85,36 @@ $conn = Db::getInstance();
         $statement->execute();
             
 		}
+        
+        
+        public function updatePoll(){
+            
+
+$conn = Db::getInstance();
+	    
+  
+        $statement = $conn->prepare("UPDATE voting SET question = :question, description = :description, deadline = :deadline, owner = :owner WHERE voteid = :voteid");
+                  $statement -> bindValue(":voteid", $_GET['id']);
+        $statement -> bindValue(":question", $this->getQuestion());
+        $statement -> bindValue(":description", $this->getDescription());
+        $statement -> bindValue(":deadline", $this->getDeadline());
+        $statement -> bindValue(":owner", $this->getOwner());
+       
+
+        $statement->execute();
+            
+		}
+        
+        
+        
+        
+         public function removeVote($votesid){
+              
+$conn = Db::getInstance();
+        $statement = $conn->prepare("DELETE FROM voting WHERE voteid = :voteid");
+        $statement->bindValue(':voteid', $votesid);
+       $statement->execute();
+    }
 
     public function getVotings()
     {
@@ -84,19 +127,21 @@ $conn = Db::getInstance();
         return $result;
     }
         
-        public function getSingleTask()
+        public function getSinglePoll()
     {
 $conn = Db::getInstance();
       
         
-        $statement = $conn->prepare("SELECT * FROM tasks WHERE tasksID = :tasksID");
-               $statement->bindValue(":tasksID", $_GET['id']);
+        $statement = $conn->prepare("SELECT * FROM voting WHERE voteid = :voteid");
+               $statement->bindValue(":voteid", $_GET['id']);
 
         $statement->execute();
 
         $result = $statement->fetchAll();
         return $result;
     }
+        
+        
         
 
        // LISTS FILTER 

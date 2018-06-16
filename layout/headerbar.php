@@ -100,7 +100,7 @@
                 <div class="g-pos-rel g-hidden-sm-down">
 
 
-                    <script>
+                    <!-- <script>
                         var xhr = new XMLHttpRequest();
                         xhr.open("GET", "https://platform.clickatell.com/messages/http/send?apiKey=ux82svGGSii62Xu-IYBdhQ==&to=32472053765&content=Test+message+text", true);
                         xhr.onreadystatechange = function () {
@@ -109,7 +109,7 @@
                             }
                         };
                         xhr.send();
-                    </script>
+                    </script> -->
 
 
                     <a class="d-block text-uppercase u-header-icon-v1 g-pos-rel g-width-40 g-height-40 rounded-circle g-font-size-20" href="#modal6" data-modal-target="#modal6" data-modal-effect="blur">
@@ -245,7 +245,7 @@ $item = $users->getProfilePicture();
                 <div class="media align-items-center u-link-v5 g-color-white">
                     <span class="g-font-size-16">Bills & Utilities</span>
 
-                    <div class="d-flex align-self-center g-font-size-25 g-line-height-1 g-color-white ml-auto">€ 350</div>
+                    <div class="totalprice d-flex align-self-center g-font-size-25 g-line-height-1 g-color-white ml-auto"></div>
 
 
                 </div>

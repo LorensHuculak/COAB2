@@ -15,7 +15,7 @@ require('layout/header.php');
 
         <!-- SIDEBAR LEFT -->
 
-        <?php include_once('layout/sidebar.php'); ?>
+        <?php include_once('layout/sidebar2.php'); ?>
 
             <!-- END SIDEBAR LEFT -->
 
@@ -23,7 +23,7 @@ require('layout/header.php');
 
 
 
-            <?php include_once('layout/emptylist.php'); ?>
+            <?php include_once('layout/task_list.php'); ?>
 
 
                 <?php 

@@ -106,13 +106,13 @@ require('layout/header_login.php');
 				//check for any errors
 				if(isset($error)){
 					foreach($error as $error){
-						echo '<p class="bg-danger">'.$error.'</p>';
+						echo '<p class="g-color-red">'.$error.'</p>';
 					}
 				}
 
 				//if action is joined show sucess
 				if(isset($_GET['action']) && $_GET['action'] == 'registrated'){
-					echo "<h2 class='text-center bg-success'>Registration Succesful!</h2>";
+					echo "<h2 class='text-center g-color-green'>Registration Succesful!</h2>";
 				}
 				?>
 
@@ -123,21 +123,21 @@ require('layout/header_login.php');
 
                                     <div class="mb-4">
 
-                                        <input type="text" name="username" id="username" placeholder="Username" value="<?php if(isset($error)){ echo $_POST['username']; } ?>" tabindex="1" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15">
+                                        <input type="text" name="username" id="username" placeholder="Username" value="<?php if(isset($error)){ echo $_POST['username']; } ?>" tabindex="1" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-cyan--hover rounded g-py-15 g-px-15">
 
                                     </div>
 
                                     <div class="mb-4">
-                                        <input type="email" name="email" id="email" placeholder="Email Address" value="<?php if(isset($error)){ echo $_POST['email']; } ?>" tabindex="2" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15">
+                                        <input type="email" name="email" id="email" placeholder="Email Address" value="<?php if(isset($error)){ echo $_POST['email']; } ?>" tabindex="2" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-cyan--hover rounded g-py-15 g-px-15">
                                     </div>
 
                                     <div class="row">
                                         <div class="col-xs-12 col-sm-6 mb-4">
-                                            <input type="password" name="password" id="password" placeholder="Password" tabindex="3" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15">
+                                            <input type="password" name="password" id="password" placeholder="Password" tabindex="3" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-cyan--hover rounded g-py-15 g-px-15">
                                         </div>
 
                                         <div class="col-xs-12 col-sm-6 mb-4">
-                                            <input type="password" name="passwordConfirm" id="passwordConfirm" placeholder="Confirm Password" tabindex="4" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15">
+                                            <input type="password" name="passwordConfirm" id="passwordConfirm" placeholder="Confirm Password" tabindex="4" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-cyan--hover rounded g-py-15 g-px-15">
                                         </div>
                                     </div>
 
